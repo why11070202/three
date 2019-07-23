@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>list</title>
+</head>
+
+<body>
+    <ul class='list'></ul>
+</body>
+
+</html>
+<script src="../express/node_modules/jquery/dist/jquery.js"></script>
+<script>
+    (function () {
+        $.ajax({
+            dataType: "json",
+            type: 'get',
+            url: 'http://localhost:22222/list'
+        }).done(({
+            list
+        }) => {
+            var html = list.map(function (item) {
+                return ` <li><p>${item.name}</p>
+                    <p>${item.title}</p>
+                    </li>`
+            }).join('');
+            $('.list').html(html);
+        })
+
+
+    })()
+</script>

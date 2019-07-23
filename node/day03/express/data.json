@@ -1,0 +1,20 @@
+{
+    "list": [
+        {
+            "name": "华为",
+            "title": "华为p30"
+        },
+        {
+            "name": "小米",
+            "title": "小米6"
+        },
+        {
+            "name": "vivo",
+            "title": "vivo27"
+        },
+        {
+            "name": "apple",
+            "title": "苹果8"
+        }
+    ]
+}
