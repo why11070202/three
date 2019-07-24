@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>姓名：{{name}}</p>
+        <p>地址：{{address}}</p>
+        <p>出生日期：{{date}}</p>
+        <img :src="imgurl" alt="">
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            name: '宋茜',
+            address: '山东青岛',
+            date: '1987 年2月2日',
+            imgurl: './9354d272gy1g58gk5au6ej256o3ggx6r.jpg'
+        }
+    })
+</script>
+
+</html>

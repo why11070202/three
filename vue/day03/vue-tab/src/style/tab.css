@@ -1,0 +1,21 @@
+.tab-bar .active {
+    background: skyblue;
+}
+
+.tab-con {
+    padding-top: 22px;
+}
+
+.tab-con div {
+    width: 400px;
+    height: 400px;
+    text-align: center;
+    font-size: 22px;
+    display: none;
+    border: 1px solid #ccc;
+    line-height: 400px;
+}
+
+.tab-con .active {
+    display: block
+}

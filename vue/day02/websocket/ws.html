@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <textarea name="" id="message" cols="30" rows="10"></textarea>
+    <input type="button" id="send" value="发送">
+</body>
+<script>
+    var button = document.querySelector("#send");
+    var socket = new WebSocket('ws://localhost:2222');
+    socket.onopen = function () {
+        console.log('服务已连接 ws://localhost:2222');
+    }
+    socket.onclose = function () {
+        socket = null;
+    }
+    socket.onerror = function () {
+        socket = null
+    }
+    socket.onmessage = function (msg) {
+        console.log(msg.data);
+    }
+
+    button.onclick = () => {
+        let message = document.querySelector('#message').value;
+        socket.send(message);
+        document.querySelector('#message').value = null;
+        document.querySelector('#message').focus();
+    }
+</script>
+
+</html>
