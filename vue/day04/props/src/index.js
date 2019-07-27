@@ -9,11 +9,20 @@ Vue.component('my-header', {
 
         }
     },
-    props: ['title', "type", "con", "className", "span"],
+    props: ['title', "type", "con", "className", "span", ],
     template: `<div class='header'>
-                <p v-text="title" :style="{textAlign : type}"></p>
+                <p v-text="title" :style="{textAlign : type}" ></p>
                 <div :class="[className]"><span v-text="span"></span> <input  :placeholder ="con" v-model="news" /></div>
               </div>`,
+
+    methods: {
+        clicka() {
+            console.log("这是A事件");
+        },
+        clickb() {
+            console.log("这是b事件");
+        },
+    }
 })
 
 new Vue({
@@ -28,8 +37,17 @@ new Vue({
     },
     template: `<div id="big">
                     <div >
-                        <my-header :title="name" type="left" :con="value1" className="classA" :span="spanA"></my-header>
-                        <my-header :title="name2" type="center" :con="value2" className="classB" :span="spanB"></my-header>
+                        <my-header :title="name" type="left" :con="value1" className="classA" :span="spanA" ></my-header>
+                        <my-header :title="name2" type="center" :con="value2" className="classB" :span="spanB" ></my-header>
                     </div>
-                </div>`
+                </div>`,
+    methods: {
+        clicka() {
+            console.log("这是A事件");
+        },
+        clickb() {
+            console.log("这是b事件");
+        },
+    }
+
 })

@@ -1,0 +1,11 @@
+<section>
+    <ul class="banner">
+        <li v-for="(item,index) in list" v-text="item.title" :class="{active:index===currentIndex}"
+            @click="change(index)"></li>
+    </ul>
+    <transition-group tag="ul" name="fade" class="banner-img-container">
+        <li v-for="(item,index) in list" v-show="index===currentIndex" :key="item.id">
+            <img :src="item.src" :alt="item.title" @mouseenter="_stop" @mouseleave="_begin">
+        </li>
+    </transition-group>
+</section>
