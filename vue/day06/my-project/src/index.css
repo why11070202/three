@@ -314,6 +314,13 @@
     transform: translateY(-50%);
 }
 
+#indexHeader.index--toutiaoribao .top_bar .refresh_title {
+    background: url(//s3b.pstatp.com/growth/mobile_list/image/wap_logo@3x_581de69e.png) no-repeat right center;
+    width: 83px;
+    background-size: 83px !important;
+    padding-left: 15px;
+}
+
 #indexHeader.index--toutiaoribao .top_bar .abs_l {
     width: 54px;
     z-index: 100;
