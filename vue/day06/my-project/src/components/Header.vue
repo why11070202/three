@@ -36,7 +36,7 @@ export default {
     return {
       bool: false,
       bool2: false,
-      timer: null
+      timer: null,
     };
   },
   methods: {
@@ -52,4 +52,5 @@ export default {
   }
 };
 </script>
+
 

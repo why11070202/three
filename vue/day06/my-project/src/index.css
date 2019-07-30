@@ -408,12 +408,6 @@
     height: 132px;
 }
 
-#indexHeader.index--toutiaoribao .top_bar .refresh_title {
-    background: url(//s3b.pstatp.com/growth/mobile_list/image/wap_logo@3x_581de69e.png) no-repeat right center;
-    width: 83px;
-    background-size: 83px !important;
-    padding-left: 15px;
-}
 
 [data-dpr="2"] #indexHeader.index--toutiaoribao .top_bar .refresh_title {
     width: 166px;
