@@ -4,10 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-
+var listRouter = require('./routes/list');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var studentsRouter = require('./routes/students');
+
 
 
 
@@ -26,9 +26,14 @@ app.use(express.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req, res, next) => {
+  res.append('Access-Control-Allow-Origin', '*');
+  next();
+})
+
+app.use('/list', listRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/students', studentsRouter);
 
 
 // catch 404 and forward to error handler
