@@ -20,25 +20,25 @@ export default {
         {
           title: "首页",
           // 路由名字
-          url: "/index",
+          url: "index",
           // 图标
           icon: "home-o"
         },
         {
           title: "发现",
           // 路由名字
-          url: "/fx",
+          url: "fx",
           // 图标
           icon: "home-o"
         },
         {
           title: "订单",
-          url: "/order",
+          url: "order",
           icon: "search"
         },
         {
           title: "我的",
-          url: "/mine",
+          url: "mine",
           icon: "friends-o"
         }
       ]
