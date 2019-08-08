@@ -6,7 +6,7 @@
         :key="index"
         :icon="icon.image_hash"
         :text="icon.name"
-        url="/meishi"
+        url="#/meishi"
       />
     </van-grid>
 

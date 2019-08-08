@@ -18,6 +18,9 @@
         :immediate-check="true"
       />
     </van-list>
+    <van-popup v-model="show">
+      <van-loading size="24px" vertical color="#1989fa" type="spinner">加载中...</van-loading>
+    </van-popup>
   </div>
 </template>
 <script>
@@ -27,7 +30,8 @@ export default {
       list: [],
       loading: false,
       finished: false,
-      shoplist: []
+      shoplist: [],
+      show: false
     };
   },
   async created() {
@@ -35,6 +39,7 @@ export default {
   },
   methods: {
     getShoplist() {
+      // this.show = true;
       setTimeout(async () => {
         let shoplist = await this.$axios(
           "https://www.easy-mock.com/mock/5d4028383847913b8df88437/iconlist/shoplist2"
@@ -42,6 +47,7 @@ export default {
         this.shoplist = [...this.shoplist, ...shoplist.data.data.shopList];
         // 加载状态结束
         this.loading = false;
+        this.show = false;
       }, 1000);
 
       // 数据全部加载完成
@@ -72,6 +78,15 @@ export default {
   border-radius: 0;
   background: rgba(0, 0, 0, 0.1);
 }
+
+.van-loading {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.van-loading__text {
+  color: #fff;
+}
+
 .index-container_10L_lQb {
   position: relative;
   border-bottom: 0.013333rem solid #eee;

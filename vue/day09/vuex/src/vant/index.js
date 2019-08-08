@@ -16,7 +16,9 @@ import {
   Card,
   Area,
   Field,
-  Button
+  Button,
+  Popup,
+  Loading
 } from 'vant'
 
 export default () => {
@@ -32,5 +34,7 @@ export default () => {
   Vue.use(Area)
   Vue.use(Field)
   Vue.use(Button)
+  Vue.use(Popup)
+  Vue.use(Loading);
 
 }

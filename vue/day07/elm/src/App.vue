@@ -4,6 +4,7 @@
     <Icon></Icon>
     <List></List>
     <Footer></Footer>
+    <!-- <Fdj></Fdj> -->
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import Header from "./components/Header.vue";
 import Icon from "./components/Icon.vue";
 import List from "./components/List.vue";
 import Footer from "./components/Footer.vue";
+import Fdj from "./components/fdj.vue";
 
 export default {
   name: "app",
@@ -19,7 +21,8 @@ export default {
     Header,
     Icon,
     List,
-    Footer
+    Footer,
+    Fdj
   }
 };
 </script>
