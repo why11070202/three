@@ -80,6 +80,7 @@
     </div>
     <div class="blank"></div>
     <!-- 列表 -->
+    <van-divider :style="{ color: '#FF5512', borderColor: '#FFF', padding: '0 100px' }">奇龙商场</van-divider>
     <Homelist></Homelist>
   </div>
 </template>

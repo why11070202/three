@@ -1,16 +1,6 @@
 <template>
   <div>
-    <!-- <van-tabbar v-model="active">
-      <van-tabbar-item>
-        <span>首页</span>
-        <img
-          slot="icon"
-          slot-scope="props"
-          :src="props.active ? footerlist[0].active :footerlist[0].normal"
-        />
-      </van-tabbar-item>
-    -->
-
+    <div class="footerbottom"></div>
     <van-tabbar v-model="active" active-color="#eb5120" inactive-color="#666">
       <van-tabbar-item v-for="(i,index) in icons" :key="index" @click="navTo(i.router)">
         <span v-text="i.title"></span>
@@ -88,4 +78,11 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.footerbottom {
+  height: 50px;
+}
+</style>
+
 

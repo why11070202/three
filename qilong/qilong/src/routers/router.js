@@ -30,22 +30,25 @@ export default new Router({
           name: 'my',
           component: () => import('../views/Home/my.vue')
         },
-        // {
-        //   path: 'activity',
-        //   name: 'activity',
-        //   component: () => import('../views/activity.vue')
-        // }, 
+        {
+          path: 'shop',
+          name: 'shop',
+          component: () => import('../views/list.vue')
+        },
       ]
     },
     {
       path: '/reg',
       name: 'reg',
       component: () => import('../views/reg.vue')
-    },
-    {
+    }, {
       path: '/login',
       name: 'login',
       component: () => import('../views/login.vue')
+    }, {
+      path: '/detail/:id',
+      name: 'detail',
+      component: () => import('../views/detail.vue')
     },
     {
       path: '/icon1',
@@ -66,6 +69,11 @@ export default new Router({
       path: '/icon4',
       name: 'icon4',
       component: () => import('../views/icon1.vue')
+    },
+    {
+      path: '/icon5',
+      name: 'icon5',
+      component: () => import('../views/list.vue')
     }, {
       path: '/city',
       name: 'city',

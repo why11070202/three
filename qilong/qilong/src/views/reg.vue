@@ -102,7 +102,6 @@ export default {
       // 提示内容
       popupcontent: null,
       check: true,
-
       conn: function(con) {
         this.show = true;
         this.popupcontent = con;

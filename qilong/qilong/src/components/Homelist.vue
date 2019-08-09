@@ -1,6 +1,5 @@
 <template>
   <div>
-    <van-divider :style="{ color: '#FF5512', borderColor: '#FF5512', padding: '0 100px' }">奇龙商场</van-divider>
     <div>
       <van-list
         v-model="loading"
@@ -10,7 +9,12 @@
         @load="getShoplist"
       >
         <van-cell v-for="(item,index) in shoplist" :key="index">
-          <van-card :price="item.sellprice" :thumb="item.pic" :origin-price="item.marketprice">
+          <van-card
+            :price="item.sellprice"
+            :thumb="item.pic.split(',')[0]"
+            :origin-price="item.marketprice"
+            @click="next(item.id)"
+          >
             <div slot="title">
               <van-tag plain type="danger" color="#FF5512">自营</van-tag>
               <span
@@ -32,10 +36,9 @@ export default {
       loading: false,
       finished: false,
       shoplist: []
-
-      //   show: false
     };
   },
+
   crtead() {
     getShoplist();
   },
@@ -44,7 +47,7 @@ export default {
       // this.show = true;
       setTimeout(async () => {
         let shoplist = await this.$axios("http://localhost:3000/homelist/data");
-        console.log(shoplist);
+        // console.log(shoplist);
         this.shoplist = [...this.shoplist, ...shoplist.data];
         // 加载状态结束
         this.loading = false;
@@ -54,6 +57,14 @@ export default {
           this.finished = true;
         }
       }, 1000);
+    },
+    next(id) {
+      this.$router.push({
+        name: "detail",
+        params: {
+          id
+        }
+      });
     }
   }
 };

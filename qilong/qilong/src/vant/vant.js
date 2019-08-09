@@ -21,8 +21,13 @@ import {
     IndexAnchor,
     Field,
     Button,
-    Popup
-
+    Popup,
+    ImagePreview,
+    GoodsAction,
+    GoodsActionIcon,
+    GoodsActionButton,
+    Stepper,
+    Toast
 
 } from 'vant';
 
@@ -43,5 +48,9 @@ export default () => {
     Vue.use(Field);
     Vue.use(Button);
     Vue.use(Popup);
+    Vue.use(ImagePreview);
+    Vue.use(GoodsAction).use(GoodsActionIcon).use(GoodsActionButton);
+    Vue.use(Stepper);
+    Vue.use(Toast)
 
 }
