@@ -8,7 +8,7 @@ const {
 } = require('../libs/mongodb');
 /* GET home page. */
 router.get('/data', function (req, res, next) {
-    res.append('Access-Control-Allow-Origin', '*')
+    // res.append('Access-Control-Allow-Origin', '*')
     find('goodlist', {}, (results) => {
         console.log(results.length);
         res.send(results);
@@ -16,7 +16,7 @@ router.get('/data', function (req, res, next) {
 
 });
 router.get('/good', function (req, res, next) {
-    res.append('Access-Control-Allow-Origin', '*')
+    // res.append('Access-Control-Allow-Origin', '*')
     let id = req.query.id * 1;
     find('goodlist', {
         id

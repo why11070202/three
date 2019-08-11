@@ -19,9 +19,15 @@
       <van-tabs background="#fcfcfc" :duration="0">
         <van-tab title=" 商品" name="a">
           <!-- 图片 -->
-          <van-image-preview v-model="show" :images="pic" :loop="false" @change="onChange">
+          <!-- <van-image-preview v-model="show" :images="pic" :loop="false" @change="onChange">
             <template v-slot:index>{{ `${index+1}/${pic.length}` }}</template>
-          </van-image-preview>
+          </van-image-preview>-->
+
+          <van-swipe :autoplay="3000000">
+            <van-swipe-item v-for="(image, index) in pic" :key="index">
+              <img v-lazy="image" />
+            </van-swipe-item>
+          </van-swipe>
           <!-- 商品信息 -->
           <div class="goodsinfobox boxshadow-t">
             <div class="goodstitle">
@@ -152,7 +158,7 @@
                   <div class="modelsbox numbarbox">
                     <p>数量</p>
                     <div class="numbar after">
-                      <van-stepper v-model="value" integer min="1" :max="gooddata.stock*1" />
+                      <van-stepper v-model="num" integer :min="1" :max="gooddata.stock * 1" />
                     </div>
                   </div>
                 </div>
@@ -176,12 +182,12 @@ export default {
       // 图片显示
       show: true,
       // 当前图片索引
-      index: 1,
+      index: 0,
       // 规格是否显示
       des: false,
       desindex: 0,
       // 规格数量
-      value: 2,
+      num: 2,
       // 用来判断是否登陆
       tel: null,
       gooddata: {},
@@ -191,13 +197,22 @@ export default {
         "底座+玻璃杯（600ml）",
         "底座+陶瓷杯（1L）"
       ],
-      pic: []
+      pic: [],
+      getCookie: function(key) {
+        let cookie = document.cookie;
+        var arr = cookie.split("; ");
+        for (let i = 0; i < arr.length; i++) {
+          let arr2 = arr[i].split("=");
+          if (key == arr2[0]) {
+            return arr2[1];
+          }
+        }
+      }
     };
   },
   async created() {
-    let tel = window.localStorage.getItem("tel");
+    let tel = this.getCookie("tel");
     this.tel = tel;
-    this.value = 1;
     let gooddata = await this.$axios("http://localhost:3000/homelist/good", {
       params: {
         id: this.$route.params.id
@@ -211,17 +226,25 @@ export default {
       this.desindex = index;
     },
     // 加入购物车
-    addcar() {
+    async addcar() {
       if (this.des) {
         if (this.tel) {
           //登录了加入数据库
-        } else {
-          let res = confirm("您还未登录请先登陆");
-          if (res) {
-            this.$router.push({
-              name: "login"
-            });
+          let result = await this.$axios("http://localhost:3000/car/add", {
+            params: {
+              id: this.gooddata.id,
+              tel: this.tel,
+              num: this.num
+            }
+          });
+          if (result.data.ok) {
+            this.$toast("加入购物车成功");
           }
+        } else {
+          this.$toast("您还未登录请先登陆");
+          this.$router.push({
+            name: "login"
+          });
         }
         this.des = false;
       } else {
@@ -236,27 +259,25 @@ export default {
     closedes() {
       this.des = false;
     },
-    // 图片
-    onChange(index) {
-      this.index = index;
-    },
     onClickIcon() {
       this.$toast("点击图标");
     },
     // 去购物车
     tocar() {
-      if (this.tel) {
-        this.$router.push({
-          name: "car"
-        });
-      } else {
-        let res = confirm("您还未登录请先登陆");
-        if (res) {
-          this.$router.push({
-            name: "login"
-          });
-        }
-      }
+      // if (this.tel) {
+      //   this.$router.push({
+      //     name: "car"
+      //   });
+      // } else {
+      //   this.$toast("您还未登录请先登陆");
+      //   this.$router.push({
+      //     name: "login"
+      //   });
+      // }
+
+      this.$router.push({
+        name: "car"
+      });
     },
     // 返回
     back() {
@@ -275,6 +296,14 @@ a:link {
   text-decoration: none;
 }
 
+.van-swipe {
+  width: 100%;
+  // height: 375px;
+}
+
+.van-swipe img {
+  width: 100%;
+}
 .van-stepper button {
   border-radius: 50%;
 }
@@ -307,7 +336,7 @@ a:link {
     height: 1.25rem;
     line-height: 1.25rem;
     padding: 0 10px 0 10px;
-
+    background: #fcfcfc;
     position: relative;
     z-index: 3;
     a {

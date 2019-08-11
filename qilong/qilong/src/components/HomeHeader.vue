@@ -2,9 +2,9 @@
   <div>
     <div class="header" style="position: fixed;top: 0px;left: 0;">
       <div @click="back(headerdata.licon)">
-        <span v-text="headerdata.addres" v-show="headerdata.addres"></span>
+        <span v-text="headerdata.addres" v-show="headerdata.addres" class="fl"></span>
         <van-icon
-          class="fr"
+          class="fl"
           :name="headerdata.licon"
           :color="headerdata.color"
           :size="headerdata.size"
@@ -13,7 +13,7 @@
 
       <div class="title">
         <div v-text="headerdata.headertitle" v-show="!headerdata.input"></div>
-        <input v-show="headerdata.input" type="text" placeholder="请输入产品名" />
+        <input v-show="headerdata.input" type="text" placeholder="请输入产品名" @click="search" />
       </div>
       <div class="fr">
         <van-icon
@@ -28,7 +28,7 @@
   </div>
 </template>
 <script>
-import option from "../assets/option.png";
+import reg from "../assets/reg.png";
 export default {
   data() {
     return {
@@ -46,8 +46,7 @@ export default {
           // 左边图标
           licon: "arrow-down",
           // 右边图标 默认三点选项
-          ricon:
-            "http://guangzhou.m.qilong.com/Public/newmobile/default/Images/index/topicon_mess.png",
+          ricon: reg,
           // 图标颜色
           color: "white",
           // 图标大小
@@ -80,7 +79,16 @@ export default {
         this.$router.push({
           name: "index"
         });
+      } else {
+        this.$router.push({
+          name: "reg"
+        });
       }
+    },
+    search() {
+      this.$router.push({
+        name: "search"
+      });
     }
   }
 };

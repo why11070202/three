@@ -80,7 +80,7 @@
     </div>
     <div class="blank"></div>
     <!-- 列表 -->
-    <van-divider :style="{ color: '#FF5512', borderColor: '#FFF', padding: '0 100px' }">奇龙商场</van-divider>
+    <van-divider :style="{ color: '#FF5512', borderColor: '#FF5512', padding: '0 100px' }">奇龙商场</van-divider>
     <Homelist></Homelist>
   </div>
 </template>
@@ -165,6 +165,16 @@ export default {
         // 右边图标是否显示
         riconshow: true,
         input: true
+      },
+      getCookie: function(key) {
+        let cookie = document.cookie;
+        var arr = cookie.split("; ");
+        for (let i = 0; i < arr.length; i++) {
+          let arr2 = arr[i].split("=");
+          if (key == arr2[0]) {
+            return arr2[1];
+          }
+        }
       }
     };
   },
@@ -182,8 +192,15 @@ export default {
       });
     }
   },
-  created() {
+  async created() {
     this.headerdata.addres = this.$store.getters.getcity;
+    // 把token拿去后端
+    // let token = this.getCookie("token");
+    // this.$axios.post('http://localhost:3000/users/check',{
+    //   token
+    // }).then(res => {
+    //   console.log(res);
+    // })
   }
 };
 </script>

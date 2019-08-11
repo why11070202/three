@@ -24,31 +24,42 @@ import Homelist from "../components/Homelist";
 export default {
   data() {
     return {
-      tel: null
+      tel: null,
+      getCookie: function(key) {
+        let cookie = document.cookie;
+        var arr = cookie.split("; ");
+        for (let i = 0; i < arr.length; i++) {
+          let arr2 = arr[i].split("=");
+          if (key == arr2[0]) {
+            return arr2[1];
+          }
+        }
+      }
     };
   },
   components: {
     Homelist
   },
   crtead() {
-    let tel = window.localStorage.getItem("tel");
+    let tel = this.getCookie("tel");
     this.tel = tel;
   },
   methods: {
     // 去购物车
     tocar() {
-      if (this.tel) {
-        this.$router.push({
-          name: "car"
-        });
-      } else {
-        let res = confirm("您还未登录请先登陆");
-        if (res) {
-          this.$router.push({
-            name: "login"
-          });
-        }
-      }
+      // if (this.tel) {
+      //   this.$router.push({
+      //     name: "car"
+      //   });
+      // } else {
+      //   this.$toast("您还未登录请先登陆");
+      //   this.$router.push({
+      //     name: "login"
+      //   });
+      // }
+      this.$router.push({
+        name: "car"
+      });
     }
   }
 };

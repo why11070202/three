@@ -138,35 +138,35 @@ export default {
 
     async reg() {
       if (this.phone && this.password && this.repassword && this.sms) {
-        // if (this.sms != this.rightsms) {
-        //   this.conn("验证码不正确");
-        // } else {
-        if (this.repassword != this.password) {
-          this.conn("密码不一致");
+        if (this.sms != this.rightsms) {
+          this.conn("验证码不正确");
         } else {
-          if (!this.check) {
-            this.conn("您还未同意协议");
+          if (this.repassword != this.password) {
+            this.conn("密码不一致");
           } else {
-            let msg = await this.$axios({
-              method: "post",
-              url: "http://localhost:3000/users/add",
-              data: this.$qs.stringify({
-                tel: this.phone,
-                password: this.password
-              })
-            });
-            // console.log(msg);
-            if (msg.data === "yes") {
-              this.conn("注册成功");
-              this.$router.push({
-                name: "login"
-              });
+            if (!this.check) {
+              this.conn("您还未同意协议");
             } else {
-              this.conn("注册失败");
+              let msg = await this.$axios({
+                method: "post",
+                url: "http://localhost:3000/users/add",
+                data: this.$qs.stringify({
+                  tel: this.phone,
+                  password: this.password
+                })
+              });
+              console.log(msg);
+              if (msg.data === "yes") {
+                this.conn("注册成功");
+                this.$router.push({
+                  name: "login"
+                });
+              } else {
+                this.conn("注册失败");
+              }
             }
           }
         }
-        // }
       } else {
         this.conn("请输完整的信息");
       }
@@ -180,9 +180,10 @@ export default {
       } else {
         let reg = /^1[3-9]\d{9}$/;
         let res = reg.test(this.phone);
-        res = true;
+        // res = true;
         if (!res) {
           this.conn("请输入正确的手机号");
+          this.rightcode = this.securityCode();
         } else {
           // 数据库查找是否已注册
           let res = await this.$axios("http://localhost:3000/users/tel", {
@@ -195,16 +196,19 @@ export default {
           } else {
             if (this.code != this.rightcode) {
               this.conn("图片验证码不正确");
+              this.rightcode = this.securityCode();
             } else {
               // 发送验证码
               let data = await this.$axios({
                 method: "post",
-                url: "http://10.3.132.145:3300/duan/xin",
+                url: "http://localhost:3000/duan/xin",
                 data: this.$qs.stringify({
-                  tel: this.tel
+                  tel: this.phone
                 })
               });
               if (data.data.jsonObj.reason != "操作成功") {
+                console.log(data.data.nums);
+                this.rightsms = data.data.nums;
                 this.conn("验证码发送失败");
               } else {
                 console.log(data.data.nums);

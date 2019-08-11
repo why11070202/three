@@ -5,7 +5,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   base: process.env.BASE_URL,
   routes: [{
       path: '/home',
@@ -80,6 +80,20 @@ export default new Router({
       component: () => import('../views/city.vue')
     },
     {
+      path: '/car',
+      name: 'car',
+      component: () => import('../views/car.vue'),
+    }, {
+      path: '/set',
+      name: 'set',
+      component: () => import('../views/set.vue'),
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: () => import('../views/search.vue'),
+    },
+    {
       path: "/",
       redirect: () => {
         return '/home/index'
@@ -88,3 +102,32 @@ export default new Router({
 
   ]
 })
+router.beforeEach((to, from, next) => {
+  // let islogin = false
+  let islogin = (function () {
+    let cookie = document.cookie;
+    var arr = cookie.split("; ");
+    for (let i = 0; i < arr.length; i++) {
+      let arr2 = arr[i].split("=");
+      if ('islogin' == arr2[0]) {
+        return arr2[1];
+      }
+    }
+  })()
+
+  // console.log(tel);
+  const nextRoute = ['car', 'my'];
+  if (nextRoute.indexOf(to.name) >= 0) {
+    if (!islogin) {
+      router.push({
+        name: 'login'
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+export default router

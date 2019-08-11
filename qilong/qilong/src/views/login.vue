@@ -58,6 +58,8 @@
 </template>
 <script>
 import HomeHeader from "../components/HomeHeader.vue";
+import reg from "../assets/reg.png";
+
 export default {
   data() {
     return {
@@ -68,8 +70,7 @@ export default {
         // 左边图标
         licon: "arrow-left",
         // 右边图标 默认三点选项
-        ricon:
-          "http://guangzhou.m.qilong.com/Public/newmobile/default/Images/index/topicon_member.png",
+        ricon: reg,
         // 图标颜色
         color: "white",
         // 图标大小
@@ -91,6 +92,16 @@ export default {
         setTimeout(() => {
           this.show = false;
         }, 1200);
+      },
+      setCookie: function(key, val, day) {
+        if (day) {
+          let now = new Date();
+          now.setDate(now.getDate + day);
+          document.cookie =
+            key + "=" + val + ";expires=" + now.toUTCString() + ";path=/";
+        } else {
+          document.cookie = key + "=" + val + ";path=/";
+        }
       }
     };
   },
@@ -98,6 +109,7 @@ export default {
     HomeHeader
   },
   methods: {
+    // 密码是否可见
     toggle() {
       this.type = !this.type;
     },
@@ -111,7 +123,12 @@ export default {
             password: this.password
           })
         });
-        if (msg.data === "yes") {
+        if (msg.data != "no") {
+          console.log(msg.data);
+          this.setCookie("tel", this.phone, 7);
+          this.setCookie("token", msg.data, 7);
+          this.setCookie("islogin", true, 7);
+
           this.$router.push({
             name: "index"
           });

@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="settingicon">
-        <a href="/info/index"></a>
+        <a href="#/set"></a>
       </div>
       <div class="plusmemberlink">
         <a href="/PrivilegeInfo/getPrivilegeInfo?privilegeId=2"></a>
@@ -43,7 +43,7 @@
         <!--<dd><a href="#"><em>0</em>购物车</a></dd>-->
       </dl>
     </div>
-    <div class="blank14"></div>
+    <Blank />
     <div class="cell">
       <van-cell
         v-for="(item,index) in celldata"
@@ -63,6 +63,7 @@
   </div>
 </template>
 <script>
+import Blank from "../../components/Blank";
 export default {
   data() {
     return {
@@ -123,11 +124,24 @@ export default {
             "http://my.m.qilong.com/Public/newmobile/default/Images/member/title_icon_05.png"
         }
       ],
-      username: "游客"
+      username: "游客",
+      getCookie: function(key) {
+        let cookie = document.cookie;
+        var arr = cookie.split("; ");
+        for (let i = 0; i < arr.length; i++) {
+          let arr2 = arr[i].split("=");
+          if (key == arr2[0]) {
+            return arr2[1];
+          }
+        }
+      }
     };
   },
+  components: {
+    Blank
+  },
   created() {
-    let name = window.localStorage.getItem("user");
+    let name = this.getCookie("tel");
     if (name) {
       this.username = name;
     }
@@ -147,6 +161,7 @@ export default {
   font-size: 14px;
 }
 .cell {
+  background: #fafafa;
   > div {
     &:nth-child(4) {
       margin-bottom: 10px;

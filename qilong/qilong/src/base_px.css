@@ -60,12 +60,12 @@ input {
 }
 
 
-.van-overlay {
+/* .van-overlay {
     position: static !important;
     width: 100% !important;
     height: 0px !important;
     background-color: rgba(0, 0, 0, 0.7) !important;
-}
+} */
 
 .van-image-preview {
     top: 47px !important;

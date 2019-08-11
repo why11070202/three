@@ -27,7 +27,8 @@ import {
     GoodsActionIcon,
     GoodsActionButton,
     Stepper,
-    Toast
+    Toast,
+    SubmitBar
 
 } from 'vant';
 
@@ -51,6 +52,7 @@ export default () => {
     Vue.use(ImagePreview);
     Vue.use(GoodsAction).use(GoodsActionIcon).use(GoodsActionButton);
     Vue.use(Stepper);
-    Vue.use(Toast)
+    Vue.use(Toast);
+    Vue.use(SubmitBar);
 
 }

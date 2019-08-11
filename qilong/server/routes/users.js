@@ -6,9 +6,15 @@ const {
   del,
   update
 } = require('../libs/mongodb');
+
+const {
+  createToken,
+  decodeToken,
+  checkToken
+} = require('../libs/token');
 /* GET users listing. */
 router.get('/tel', function (req, res, next) {
-  res.append('Access-Control-Allow-Origin', '*');
+  // res.append('Access-Control-Allow-Origin', '*');
   let tel = req.query.tel
   find('user', {
     'tel': tel
@@ -22,7 +28,7 @@ router.get('/tel', function (req, res, next) {
 
 });
 router.post('/add', function (req, res, next) {
-  res.append('Access-Control-Allow-Origin', '*');
+  // res.append('Access-Control-Allow-Origin', '*');
   let {
     tel,
     password,
@@ -42,7 +48,7 @@ router.post('/add', function (req, res, next) {
 });
 
 router.post('/login', function (req, res, next) {
-  res.append('Access-Control-Allow-Origin', '*');
+  // res.append('Access-Control-Allow-Origin', '*');
   let {
     tel,
     password,
@@ -52,11 +58,27 @@ router.post('/login', function (req, res, next) {
     'password': password
   }, (results) => {
     if (results.length) {
-      res.send('yes');
+      // res.send('yes');
+      let token = createToken({
+        tel
+      }, 300)
+      res.send(token)
     } else {
       res.send('no');
     }
   })
+
+});
+
+router.post('/check', function (req, res, next) {
+
+  // let token = req.body.token;
+  // let res = checkToken(token)
+  // console.log(res);
+  // res.send(res)
+  console.log(req.body.token);
+  // let res = checkToken(req.body.token)
+  res.send('y')
 
 });
 
