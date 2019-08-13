@@ -25,8 +25,8 @@
         <a href="javascript:void(0);" id="login" class="submit" @click="login">登录</a>
         <!--不可用的时候 <a href=""  class="submit none">登录</a>-->
         <span class="after">
-          <a href="/backpwd" class="fl click_password">忘记密码？</a>
-          <a href="/passport/quick" class="fr click_regist">短信快捷登录</a>
+          <a href="javascript:void(0);" class="fl click_password">忘记密码？</a>
+          <a href="javascript:void(0);" class="fr click_regist">短信快捷登录</a>
         </span>
       </div>
       <div class="t_p_login" style="display:">
@@ -128,6 +128,9 @@ export default {
           this.setCookie("tel", this.phone, 7);
           this.setCookie("token", msg.data, 7);
           this.setCookie("islogin", true, 7);
+          window.localStorage.setItem("tel", this.phone);
+          window.localStorage.setItem("token", msg.data);
+          window.localStorage.setItem("islogin", true);
 
           this.$router.push({
             name: "index"

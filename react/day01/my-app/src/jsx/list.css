@@ -1,0 +1,25 @@
+.list{
+height: 50px;
+background: #f4f5f6;
+
+}
+ul{
+margin: 0;
+padding: 0;
+overflow: hidden;
+overflow-x: scroll;
+white-space: nowrap;
+
+}
+li{
+    list-style: none;
+    width: 60px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    white-space: nowrap;
+    display: inline-block;
+}
+.right{
+    float: right;
+}
