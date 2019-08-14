@@ -1,0 +1,26 @@
+.main{
+    width: 100%;
+    .m_l{
+        width: 190px;
+        background-color: #f2f2f2;
+        min-height:827px;
+        .ant-menu-dark{
+        background: #fff
+ 
+        }
+        .ant-menu-dark .ant-menu-submenu-open, .ant-menu-dark .ant-menu-submenu-selected{
+            color: black;
+        }
+        .ant-menu-dark .ant-menu-inline.ant-menu-sub{
+            background: #fff;
+        }
+        .ant-menu-dark.ant-menu-inline .ant-menu-item{
+            color: black;
+        }
+        .ant-menu-submenu-active span{
+            color: blue;
+        }
+    }.m_r{
+        
+    }
+}

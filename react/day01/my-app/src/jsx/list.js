@@ -16,19 +16,20 @@ class Li extends React.Component {
         return (<li key={index}>{item}</li>)
        })
    }
+
+
     render() {
         return(
-            <div>
-         <div className="list">
-             <ul >
-                {this.li(this.props.num)}
-            </ul>
-            
-        </div>
-        <div className="right">
-                <a>+</a>
-        </div>
-        </div>
+            <div className="nav">
+                <div className="list">
+                    <ul >
+                        {this.li(this.props.num)}
+                    </ul>
+                </div>
+                <div className="right">
+                        <a>+</a>
+                </div>
+            </div>
         )
     }
 }
